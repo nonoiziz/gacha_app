@@ -1,6 +1,6 @@
 # gacha_app
 
-A new Flutter project.
+My new Flutter project for my kid.
 
 ## Getting Started
 
