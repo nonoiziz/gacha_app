@@ -20,12 +20,8 @@ class Prize {
 }
 
 void main() {
-  //   int todayDrawCount = 0;
 
   String machineName = '陪睡娃扭蛋機';
-
-  //   Child aaron = children[0];
-  //   print('${aaron.name}, ${aaron.drawTimes}');
 
   print('$machineName 開張了!');
 
@@ -33,51 +29,7 @@ void main() {
   childrenDraw(children[1]);
 }
 
-//判斷能不能抽、連抽幾次、每次放進蒐集冊
-//   if (todayDrawCount < maxDraw) {
-//     for (int i = 0; i < maxDraw; i++) {
-//       if (prizes.isEmpty) {
-//         print('獎品箱空了');
-//         break;
-//       }
 
-//       if (canDraw(aaron.drawTimes)) {
-//         Prize result = drawGame();
-//         aaron.drawTimes = aaron.drawTimes + 1;
-// //         todayDrawCount = todayDrawCount + 1;
-//         print("今天已經抽了${aaron.drawTimes}次，還可以抽${maxDraw - aaron.drawTimes}次");
-//         print('抽到了${result.name},${result.imagePath}');
-//         aaron.collectionBook.add(result);
-//         print(children[0].collectionBook.length);
-//         print(children[1].collectionBook.length);
-//       } else {
-//         print('今天已經不能抽了喔');
-//         break;
-//       }
-
-//       if (canDraw(todayDrawCount)) {
-//         Prize result = drawGame();
-//         todayDrawCount = todayDrawCount + 1;
-//         print("今天已經抽了$todayDrawCount次，還可以抽${maxDraw - todayDrawCount}次");
-//         print('抽到了${result.name},${result.imagePath}');
-//         collection.add(result);
-//       } else {
-//         print('今天已經不能抽了喔');
-//         break;
-//       }
-
-//prizes.remove(result);
-//       print('${collection.length}');
-
-//     print('-----${children[0].name}的蒐集冊-----');
-
-//     Map<String, int> counts = countPrizes(aaron.collectionBook);
-
-//     for (String name in counts.keys) {
-//       print('$name 有 ${counts[name]}個');
-//     }
-//   }
-//}
 
 //獎品箱：機器裡所有可以抽的獎品
 List<Prize> prizes = [
@@ -88,8 +40,7 @@ List<Prize> prizes = [
 
 List<Child> children = [Child('維翔', 0, []), Child('羽澄', 0, [])];
 
-//蒐集冊：抽到的獎品都會放進這裡
-//List<Prize> collection = [];
+
 
 //隨機抽取獎項的程式
 Prize drawGame() {
@@ -99,7 +50,7 @@ Prize drawGame() {
   return prizes[randomResult];
 }
 
-//
+//計算集卡冊裡放入了幾個一樣的品項
 Map<String, int> countPrizes(List<Prize> list) {
   Map<String, int> counts = {};
   for (Prize p in list) {
@@ -112,16 +63,17 @@ Map<String, int> countPrizes(List<Prize> list) {
   return counts;
 }
 
+//判定今天還能不能抽的布林值
 bool canDraw(int todayDrawCount) {
   return (todayDrawCount < maxDraw ? true : false);
 }
 
+//判斷今天還能不能抽，每個孩子分開的集卡冊
 void childrenDraw(Child kid) {
   for (int i = 0; i < maxDraw; i++) {
     if (canDraw(kid.drawTimes)) {
       Prize result = drawGame();
       kid.drawTimes = kid.drawTimes + 1;
-      //         todayDrawCount = todayDrawCount + 1;
       print("今天已經抽了${kid.drawTimes}次，還可以抽${maxDraw - kid.drawTimes}次");
       print('抽到了${result.name},${result.imagePath}');
       kid.collectionBook.add(result);
